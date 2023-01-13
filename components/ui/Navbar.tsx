@@ -22,15 +22,19 @@ export const Navbar = () => {
         width={70}
         height={70}
       />
-      
+      <NextLink href='/' passHref legacyBehavior>
+        <Link>
           <Text color='white' h2>P</Text>
           <Text color='white' h3>okemon</Text>
-      
+        </Link>
+      </NextLink>
 
       <Spacer css={{flex:1}} />
-     
+      <NextLink href='/favorites' passHref legacyBehavior>
+        <Link>
           <Text color='white' h3>Favoritos</Text>
-        
+        </Link>
+      </NextLink>
     </div>
   )
 }
