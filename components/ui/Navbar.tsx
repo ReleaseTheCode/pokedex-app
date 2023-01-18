@@ -4,7 +4,7 @@ import { Link, Spacer, Text, useTheme } from "@nextui-org/react"
 
 export const Navbar = () => {
   const { theme } = useTheme();
-  console.log(`%c debug variable theme?.colors.gray900 ===>`, 'background:black;color:red', theme?.colors.gray900)
+  
   return (
     <div style={{
       display: 'flex',
