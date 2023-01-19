@@ -110,22 +110,33 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  //const { data } = await  // your fetch function here 
   const pokemonKanto = [...Array(151)].map((_,index) => `${ index + 1 }` );
   return {
     paths: pokemonKanto.map( id => ({
-      params: {id:id}
+      params: {id}
     })),
-    fallback: false
+    fallback: 'blocking'
+    //fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string };
+  const pokemon =  await getPokemonInfo( id )
+  if( !pokemon ){
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
   return {
     props: {
-      pokemon: await getPokemonInfo( id )
-    }
+      pokemon
+    },
+    revalidate: 86400
   }
 }
 
